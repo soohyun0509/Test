@@ -61,9 +61,12 @@ public class Testservice {
     // 매장 리스트 출력
     public PageVo productlist(int mno, int page ){
 
-        PageVo pageDto = new PageVo();
+        // 출력 vo객체 생성
+        PageVo pageVo = new PageVo();
+        
         // 페이징 처리된 객체 생성
-        Page<ProductEntity> productEntities = null;
+        Page <ProductEntity> productEntities = null;
+
         // 페이징 설정 시작 0부터
         Pageable pageable = PageRequest.of( page-1, 5, Sort.by( Sort.Direction.DESC, "mno"));
         List<ProductDto> productDtos = new ArrayList<>();
@@ -71,13 +74,15 @@ public class Testservice {
         if( mno == 0 ){
             productEntities = productRepository.findAll( pageable ); // 전체출력
         }else {
-            productEntities = productRepository.findbyMno( mno, pageable ); // 카테고리 선택
+            productEntities = productRepository.findBymno( mno, pageable ); // 카테고리 선택
         }
 
         // 표시할 페이징 번호 버튼 수
         int btncount = 5; // 페이지에 표시할 개수
-        int startbtn = ( page/btncount) * btncount; // 시작 번호 버튼
+        int startbtn = ( page/btncount ) * btncount+1; // 시작 번호 버튼
         int endbtn = startbtn + btncount-1; // 마지막 번호 버튼
+
+        // 토탈페이지
         if( endbtn > productEntities.getTotalPages() ) { // 마지막 페이지가 크면
             endbtn = productEntities.getTotalPages(); // 같게 만들어주기
         }
@@ -85,11 +90,14 @@ public class Testservice {
         for( ProductEntity e : productEntities ){
             productDtos.add( e.toDto() );
         }
-        pageDto.setList( productDtos );
-        pageDto.setStartbtn( startbtn );
-        pageDto.setEndbtn( endbtn );
-
-        return pageDto;
+        pageVo.setList( productDtos );
+        pageVo.setStartbtn( startbtn );
+        pageVo.setEndbtn( endbtn );
+        pageVo.setTotalpage( productEntities.getTotalPages() );
+//
+//        System.out.println("productDtos:: "+ productDtos);
+//        System.out.println("pageVo:: "+ pageVo);
+        return pageVo;
     }
 
 
