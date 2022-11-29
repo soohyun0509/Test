@@ -5,6 +5,37 @@
     <title>Title</title>
 </head>
 <body>
+<div class="container">
+
+    <!-- 왼쪽 출력 -->
+    <div class="left">
+        <!-- 제품 -->
+        <div class="productbox">
+            제품명 <input type="text" class="pname"> <br>
+            수량 <input type="text" class="pamount"> <br>
+            <button type="button" class="productbtn" onclick="productbtn()"> 등록 </button>
+        </div>
+
+        <!-- 매출 -->
+        <div class="marketbox">
+            매장명 <input type="text" class="mname"> <br>
+            <button type="button" class="marketbtn" onclick="marketbtn()"> 등록 </button>
+        </div>
+    </div>
+
+    <!-- 오른쪽 출력 -->
+    <div class="right">
+        <!-- 판매목록 -->
+        <table class="saleslist">
+            <!-- 내용 출력될 부분 -->
+        </table>
+    </div>
+
+</div>
+
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/js/test.js"></script>
 
 </body>
 </html>
