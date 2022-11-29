@@ -3,13 +3,14 @@ alert("1")
 // 제품 등록
 function productbtn(){
     alert("2")
-    info = {
+    let info = {
         pname : document.querySelector('.pname').value,
-        pamount : document.querySelector('.pamount').value
+        pprice : document.querySelector('.pprice').value,
+        mno : document.querySelector('.mno').value
     }
 
     $.ajax({
-        url : "",
+        url : "/productup",
         type : "post",
         data : JSON.stringify(info),
         contentType : "application/json",
