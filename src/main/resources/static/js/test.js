@@ -1,8 +1,6 @@
 
-alert("1")
 // 제품 등록
 function productbtn(){
-    alert("2")
     let info = {
         pname : document.querySelector('.pname').value,
         pprice : document.querySelector('.pprice').value,
@@ -43,16 +41,16 @@ saleslist()
 function saleslist(){
 
     $.ajax({
-        url : "/productup",
+        url : "/productlist",
         type : "get",
         success : re => {
             let html = '<tr>'
-                + '<th> 매장번호 </th> <th> 제품명 </th> <th> 가격 </th>'
+                + '<th> 매장명 </th> <th> 제품명 </th> <th> 가격 </th>'
                 + '</tr>';
 
             re.forEach( list =>{
                 html += '<tr>'
-                    + '<td>'+ +'</td> <td></td> <td> 수량넣을부분 </td>'
+                    + '<td>'+list.mname+'</td> <td>'+list.pname+'</td> <td>'+list.pprice+'</td>'
                     + '</tr>'
             })
             document.querySelector('.saleslist').innerHTML = html;

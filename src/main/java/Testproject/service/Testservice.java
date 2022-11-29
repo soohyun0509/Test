@@ -55,14 +55,13 @@ public class Testservice {
 
     // 매출 출력
     public List<ProductDto> productlist(){
-        List<ProductEntity> productEntities = productRepository.findAll();
+        List<ProductEntity> productEntities = productEntities = productRepository.findAll();
         List<ProductDto> productDtos = new ArrayList<>();
 
-
+        for( ProductEntity e : productEntities ){
+            productDtos.add( e.toDto() );
+        }
+        return productDtos;
     }
-
-
-
-
 
 }

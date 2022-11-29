@@ -16,6 +16,7 @@ public class ProductDto {
     private String pname;
     private int pprice;
     private int mno;
+    private String mname;
 
     public ProductEntity toEntity(){
         return ProductEntity.builder()

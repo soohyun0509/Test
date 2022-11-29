@@ -35,6 +35,7 @@ public class ProductEntity {
                 .pno(this.pno)
                 .pname(this.pname)
                 .pprice(this.pprice)
+                .mname(this.getMarketEntity().getMname())
                 .build();
     }
 
