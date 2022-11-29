@@ -1,5 +1,6 @@
 package Testproject.controller;
 
+import Testproject.domain.Dto.PageVo;
 import Testproject.domain.Dto.ProductDto;
 import Testproject.domain.Dto.MarketDto;
 import Testproject.service.Testservice;
@@ -33,8 +34,8 @@ public class TestController {
     }
 
     @GetMapping("/productlist")
-    public List<ProductDto> productlist(@RequestParam("mno") int mno){
-       return testservice.productlist(mno);
+    public PageVo productlist(@RequestParam("mno") int mno, @RequestParam("page") int page){
+       return testservice.productlist(mno, page);
 
     }
 

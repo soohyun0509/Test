@@ -21,6 +21,7 @@ public class ProductDto {
 
 
 
+
     public ProductEntity toEntity(){
         return ProductEntity.builder()
                 .pno(this.pno)

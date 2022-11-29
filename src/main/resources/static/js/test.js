@@ -7,7 +7,7 @@ function productbtn(){
     let info = {
         pname : document.querySelector('.pname').value,
         pprice : document.querySelector('.pprice').value,
-        mno : mno
+        mno : document.querySelector('.mno').value
     }
 
     $.ajax({
