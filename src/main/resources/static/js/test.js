@@ -1,10 +1,13 @@
 
+let mno=1; // 제품등록-- 기본 1
+let mno2=1; // 매장별 제품 출력
+
 // 제품 등록
 function productbtn(){
     let info = {
         pname : document.querySelector('.pname').value,
         pprice : document.querySelector('.pprice').value,
-        mno : document.querySelector('.mno').value
+        mno : mno
     }
 
     $.ajax({
@@ -35,6 +38,50 @@ function setmarket(){
     })
 
 }
+getmarket()
+// 매장리스트 출력 - 제품등록할때 써먹을 버튼
+function getmarket(){
+    $.ajax({
+        url:"/getmarket",
+        type:"get",
+        success : re=>{
+            let html=""
+            re.forEach(list=>{
+                html+='<button onclick="changemno('+list.mno+')">'+list.mname+'</button>'
+            })
+            document.querySelector(".mnamelist").innerHTML=html;
+        }
+
+    })
+
+}
+getmarket2()
+// 매장리스트 출력 - 매장별 판매상태 볼때 사용할 버튼
+function getmarket2(){
+    $.ajax({
+        url:"/getmarket",
+        type:"get",
+        success : re=>{
+            let html=""
+            re.forEach(list=>{
+                html+='<button onclick="changemno2('+list.mno+')">'+list.mname+'</button>'
+            })
+            document.querySelector(".mnamelist2").innerHTML=html;
+        }
+
+    })
+
+}
+// 매장 번호 변경
+function changemno(changemno){
+    mno=changemno;   alert(mno + " 매장 선택")
+}
+// 매장 번호 변경
+function changemno2(changemno){
+
+    mno2=changemno;
+    saleslist()
+}
 
 // 판매 내역 출력
 saleslist()
@@ -43,6 +90,7 @@ function saleslist(){
     $.ajax({
         url : "/productlist",
         type : "get",
+        data : {"mno" : mno2},
         success : re => {
             let html = '<tr>'
                 + '<th> 매장명 </th> <th> 제품명 </th> <th> 가격 </th>'

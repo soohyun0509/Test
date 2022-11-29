@@ -7,8 +7,10 @@ import Testproject.domain.Entity.MarketRepository;
 import Testproject.domain.Entity.ProductEntity;
 import Testproject.domain.Entity.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.yaml.snakeyaml.error.Mark;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,14 +56,31 @@ public class Testservice {
     }
 
     // 매출 출력
-    public List<ProductDto> productlist(){
-        List<ProductEntity> productEntities = productEntities = productRepository.findAll();
+    public List<ProductDto> productlist(int mno){
+        List<ProductEntity> productEntities = productRepository.findbyMno(mno);
         List<ProductDto> productDtos = new ArrayList<>();
+
+
 
         for( ProductEntity e : productEntities ){
             productDtos.add( e.toDto() );
         }
         return productDtos;
     }
+
+
+    // 매장리스트 출력
+    public List<MarketDto> getmarket(){
+        List<MarketEntity> entities=marketRepository.findAll();
+
+        List<MarketDto> marketDtoList=new ArrayList<>();
+        for(MarketEntity entity : entities){
+            marketDtoList.add(entity.toDto());
+        }
+        return marketDtoList;
+    }
+
+
+
 
 }

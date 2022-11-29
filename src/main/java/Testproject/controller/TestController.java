@@ -33,9 +33,15 @@ public class TestController {
     }
 
     @GetMapping("/productlist")
-    public List<ProductDto> productlist(){
-        return testservice.productlist();
+    public List<ProductDto> productlist(@RequestParam("mno") int mno){
+       return testservice.productlist(mno);
+
     }
 
+    // 매장리스트 출력
+    @GetMapping("/getmarket")
+    public List<MarketDto> getmarket(){
+        return testservice.getmarket();
+    }
 
 }

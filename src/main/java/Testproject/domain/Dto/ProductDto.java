@@ -18,6 +18,9 @@ public class ProductDto {
     private int mno;
     private String mname;
 
+
+
+
     public ProductEntity toEntity(){
         return ProductEntity.builder()
                 .pno(this.pno)
