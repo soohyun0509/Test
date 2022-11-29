@@ -1,5 +1,6 @@
 package Testproject.service;
 
+import Testproject.domain.Dto.MarketDto;
 import Testproject.domain.Dto.ProductDto;
 import Testproject.domain.Entity.MarketEntity;
 import Testproject.domain.Entity.MarketRepository;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,6 +40,29 @@ public class Testservice {
         }
         return false;
     }
+
+    // 마켓 등록
+    @Transactional
+    public boolean setmarket(MarketDto marketDto){
+        MarketEntity marketEntity = marketRepository.save( marketDto.toEntity() );
+        System.out.println("서비스 마켓 엔티티: " + marketEntity);
+        if( marketEntity.getMno() != 0 ){ // 번호가 0이아니면 등록
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    // 매출 출력
+    public List<ProductDto> productlist(){
+        List<ProductEntity> productEntities = productRepository.findAll();
+        List<ProductDto> productDtos = new ArrayList<>();
+
+
+    }
+
+
+
 
 
 }

@@ -22,14 +22,15 @@ function productbtn(){
 
 
 // 매장 등록
-function marketbtn(){
-    let mname = document.querySelector('.mname').value;
-
+function setmarket(){
+    let info = {
+        mname : document.querySelector('.mname').value
+    }
     $.ajax({
-        url : "",
+        url : "/setmarket",
         type : "post",
-        data : JSON.stringify(mname),
-        contentType : "application/json",
+        data : JSON.stringify( info ),
+        contentType: "application/json",
         success : re => {
             alert(re);
         }
@@ -42,18 +43,19 @@ saleslist()
 function saleslist(){
 
     $.ajax({
-        url : "",
+        url : "/productup",
         type : "get",
         success : re => {
             let html = '<tr>'
-                    + '<th> 매장명 </th> <th> 제품명 </th> <th> 수량 </th>'
-                    + '</tr>';
+                + '<th> 매장번호 </th> <th> 제품명 </th> <th> 가격 </th>'
+                + '</tr>';
 
-        /* 반복문 돌아갈 자리 */
+            re.forEach( list =>{
                 html += '<tr>'
-                    + '<td> 매장이름넣을부분 </td> <td> 제품명넣을부분 </td> <td> 수량넣을부분 </td>'
+                    + '<td>'+ +'</td> <td></td> <td> 수량넣을부분 </td>'
                     + '</tr>'
-        document.querySelector('.saleslist').innerHTML = html;
+            })
+            document.querySelector('.saleslist').innerHTML = html;
         }
 
     })
