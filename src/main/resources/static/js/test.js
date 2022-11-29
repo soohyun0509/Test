@@ -106,3 +106,16 @@ function saleslist(){
 
     })
 }
+
+printtotal()
+// 매장별 매출 합계 출력
+function printtotal(){
+    $.ajax({
+        url : "/printtotal",
+        data : {"mno" : mno2 , "cdate" : document.querySelector(".cdate").value},
+        type : "get",
+        success: re=>{
+            document.querySelector(".daytotal").innerHTML=re+" 원"
+        }
+    })
+}

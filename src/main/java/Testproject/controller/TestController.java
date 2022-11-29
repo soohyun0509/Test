@@ -45,4 +45,11 @@ public class TestController {
         return testservice.getmarket();
     }
 
+    // 매장별 매출 합계 출력
+    @GetMapping("/printtotal")
+    public int printtotal(@RequestParam("mno") int mno, @RequestParam("cdate") String cdate){
+        return testservice.printtotal(mno, cdate);
+    }
+
+
 }

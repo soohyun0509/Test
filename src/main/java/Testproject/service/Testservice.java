@@ -105,6 +105,19 @@ public class Testservice {
     }
 
 
+    // 매장별 일별, 월별 매출 합계 출력
+    public int printtotal(int mno , String cdate){
+        List<ProductEntity> entities=productRepository.findbyCdate(mno, cdate);
+        System.out.println(entities.toString() +"확인");
+
+        int daytotal=0;
+        for(ProductEntity e : entities){
+            daytotal+=e.getPprice();
+        }
+        return daytotal;
+
+
+    }
 
 
 }

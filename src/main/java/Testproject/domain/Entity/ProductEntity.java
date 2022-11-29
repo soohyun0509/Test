@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @Builder
 @ToString
-public class ProductEntity {
+public class ProductEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
